@@ -17,12 +17,12 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@Preview("treeView")
+@Preview("levelView")
 @Composable
-fun LevelView(singleAngle: Float = 30F, levelSize: Int = 8) {
+fun LevelView(singleAngle: Float = 30F, levelSize: Int = 8, angleValue: Float = 45F) {
 
     val size = 300.dp
-    var lineSize = 20.dp
+    val lineSize = 20.dp
 
     //计算出旋转的角度
     val ration = ration(levelSize * singleAngle)
@@ -32,20 +32,6 @@ fun LevelView(singleAngle: Float = 30F, levelSize: Int = 8) {
     Canvas(
         modifier = Modifier
             .size(size)
-            .pointerInteropFilter {
-                when (it.action) {
-//                    MotionEvent.ACTION_DOWN -> {
-//
-//                    }
-//                    MotionEvent.ACTION_MOVE -> {
-//
-//                    }
-//                    MotionEvent.ACTION_UP -> {
-//
-//                    }
-                    else -> false
-                }
-            }
     ) {
         drawIntoCanvas { canvas ->
             val lineWidth = lineSize.toPx()
@@ -60,8 +46,21 @@ fun LevelView(singleAngle: Float = 30F, levelSize: Int = 8) {
                 )
 
                 drawArc(
-                    color = Color.Red,
+                    color = Color.Yellow,
                     startAngle = 0F, sweepAngle = levelSize * singleAngle,
+                    useCenter = false,
+                    topLeft = Offset(lineWidth / 2, lineWidth / 2),
+                    size = Size(
+                        size.toPx() - lineWidth,
+                        size.toPx() - lineWidth,
+                    ),
+                    alpha = 1.0f,
+                    style = Stroke(lineWidth),
+                )
+
+                drawArc(
+                    color = Color.Red,
+                    startAngle = 0F, sweepAngle = angleValue,
                     useCenter = false,
                     topLeft = Offset(lineWidth / 2, lineWidth / 2),
                     size = Size(

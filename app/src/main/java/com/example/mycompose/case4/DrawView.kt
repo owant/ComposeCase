@@ -1,5 +1,6 @@
 package com.example.mycompose.case4
 
+import android.annotation.SuppressLint
 import android.view.MotionEvent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
+@SuppressLint("UnrememberedMutableState")
 @Preview("drawView")
 @Composable
 fun DrawView() {
